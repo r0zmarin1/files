@@ -307,6 +307,7 @@ namespace FilesPractice
             using (var fs = File.Create("assort"))
             using (var bw = new BinaryWriter(fs))
             {
+                bw.Write(10);
 
                 bw.Write("Мяч");
                 bw.Write(100);
@@ -332,7 +333,7 @@ namespace FilesPractice
                 bw.Write(15479);
                 bw.Write(12);
                 bw.Write(100);
- 
+
                 bw.Write("Мишка маленький");
                 bw.Write(300);
                 bw.Write(2);
@@ -411,8 +412,69 @@ namespace FilesPractice
             */
 
             // v
+            /*
+            int max = int.MinValue;
+            int raznica = 0;
+            using (var fs = File.OpenRead("assort"))
+            using (var br = new BinaryReader(fs))
+            {
+                int counttoys = br.ReadInt32();
+                for (int i = 0; i < counttoys; i++)
+                {
+                    string name = br.ReadString();
+                    int price = br.ReadInt32();
+                    int min_age = br.ReadInt32();
+                    int max_age = br.ReadInt32();
+                    if (price >= max)
+                        max = price;
+                }
+                fs.Position = 4;
+                for (int i = 0; i < counttoys; i++)
+                {
+                    string name = br.ReadString();
+                    int price = br.ReadInt32();
+                    int min_age = br.ReadInt32();
+                    int max_age = br.ReadInt32();
+                    raznica = max - price;
+                    if (raznica <= 5000)
+                        Console.WriteLine(name);
+                }
 
+            }
+            */
+            // g
+            /*
+            using (var fs = File.OpenRead("assort"))
+            using (var br = new BinaryReader(fs))
+            {
+                int counttoys = br.ReadInt32();
+                for (int i = 0; i < counttoys; i++)
+                {
+                    string name = br.ReadString();
+                    int price = br.ReadInt32();
+                    int min_age = br.ReadInt32();
+                    int max_age = br.ReadInt32();
+                    if (min_age <= 10)
+                        Console.WriteLine(name);
+                }
+            }
+            */
+            // d
 
+            using (var fs = File.OpenRead("assort"))
+            using (var br = new BinaryReader(fs))
+            {
+                int counttoys = br.ReadInt32();
+                for (int i = 0; i < counttoys; i++)
+                {
+                    string name = br.ReadString();
+                    int price = br.ReadInt32();
+                    int min_age = br.ReadInt32();
+                    int max_age = br.ReadInt32();
+                    if (min_age <= 3 || name != "Мяч")
+                        Console.WriteLine(name);
+                }
+            }
         }
     }
 }
